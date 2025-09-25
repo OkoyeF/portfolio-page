@@ -209,13 +209,13 @@ const Contact = () => {
                 />
               </div>
 
-              <Button
+              <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-500/25"
+                className="w-full bg-gradient-to-r fromw-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 text-sm sm:text-base flex items-center justify-center gap-2 min-h-[44px] active:scale-95-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-500/25"
               >
-                <Send className="w-5 h-5 mr-2" />
+                <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                 Send Message
-              </Button>
+              </button>
             </form>
           </motion.div>
         </div>
