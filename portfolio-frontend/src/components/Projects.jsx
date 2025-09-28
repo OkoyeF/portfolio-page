@@ -15,15 +15,20 @@ const Projects = () => {
     });
   };
 
+  const handleGithubClick = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   const projects = [
     {
       id: 1,
-      title: "Serverless E-commerce Platform",
-      summary: "Built a fully serverless e-commerce solution using AWS Lambda, API Gateway, and DynamoDB. Implemented real-time inventory management and automated order processing with 99.9% uptime.",
-      technologies: ["AWS Lambda", "API Gateway", "DynamoDB", "S3", "CloudFront"],
+      title: "Task Tracker Application",
+      summary: "A comprehensive task management application built with Node.js, Express, and PostgreSQL, containerized with Docker and automated with GitHub Actions.",
+      technologies: ["Backend: Node.js, Express Database: PostgreSQL", "Frontend: EJS templates, Bootstrap, jQuery", "Containerization: Docker, Docker Compose", "CI/CD: GitHub Actions", "Monitoring: Prometheus", "Version Control: Git, GitHub"],
       icon: Zap,
       gradient: "from-yellow-400 to-orange-500",
-      bgGradient: "from-yellow-500/20 to-orange-500/20"
+      bgGradient: "from-yellow-500/20 to-orange-500/20",
+      githubUrl: "https://github.com/OkoyeF/task-trackeer.git"
     },
     {
       id: 2,
@@ -131,7 +136,13 @@ const Projects = () => {
                     Live Demo
                   </Button>
                   <Button
-                    onClick={() => handleProjectClick(project.title)}
+                    onClick={() => {
+                      if (project.githubUrl) {
+                        handleGithubClick(project.githubUrl);
+                      } else {
+                        handleProjectClick(project.title);
+                      }
+                    }}
                     variant="outline"
                     size="sm"
                     className="flex-1 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/30"
