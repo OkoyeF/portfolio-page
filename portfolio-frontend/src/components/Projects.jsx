@@ -32,12 +32,13 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: "Multi-Region Data Pipeline",
-      summary: "Designed and implemented a robust data pipeline processing 10TB+ daily across multiple AWS regions. Features automated data validation, transformation, and real-time analytics dashboards.",
-      technologies: ["AWS Glue", "Kinesis", "Redshift", "EMR", "QuickSight"],
+      title: "AWS Cloud Practitioner Flashcards Practice",
+      summary: "It displays flashcards with AWS-related questions and answers, designed for learners preparing for the AWS Cloud Practitioner Certification.",
+      technologies: ["HTML, CSS, and JavaScript, GitHub Actions, Docker"],
       icon: Database,
       gradient: "from-blue-400 to-cyan-500",
-      bgGradient: "from-blue-500/20 to-cyan-500/20"
+      bgGradient: "from-blue-500/20 to-cyan-500/20",
+      siteUrl: "https://cloudpractitionerflashcards.dataocelot.com/"
     },
     {
       id: 3,
@@ -115,9 +116,9 @@ const Projects = () => {
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech) => (
+                  {project.technologies.map((tech, techIndex) => (
                     <span
-                      key={tech}
+                      key={`${project.id}-${techIndex}`}
                       className="px-3 py-1 bg-white/10 rounded-full text-sm text-white/90 border border-white/20"
                     >
                       {tech}
@@ -126,30 +127,41 @@ const Projects = () => {
                 </div>
 
                 <div className="flex gap-3">
-                  <Button
-                    onClick={() => handleProjectClick(project.title)}
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/30"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      if (project.githubUrl) {
-                        handleGithubClick(project.githubUrl);
-                      } else {
-                        handleProjectClick(project.title);
-                      }
-                    }}
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/30"
-                  >
-                    <Github className="w-4 h-4 mr-2" />
-                    Code
-                  </Button>
+                  {project.siteUrl && (
+                    <Button
+                      onClick={() => window.open(project.siteUrl, '_blank', 'noopener,noreferrer')}
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/30"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Live Demo
+                    </Button>
+                  )}
+                  
+                  {project.githubUrl && (
+                    <Button
+                      onClick={() => handleGithubClick(project.githubUrl)}
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/30"
+                    >
+                      <Github className="w-4 h-4 mr-2" />
+                      GitHub
+                    </Button>
+                  )}
+                  
+                  {!project.siteUrl && !project.githubUrl && (
+                    <Button
+                      onClick={() => handleProjectClick(project.title)}
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/30"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Coming Soon
+                    </Button>
+                  )}
                 </div>
               </div>
             </motion.div>
